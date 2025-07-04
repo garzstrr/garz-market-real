@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameTopUp - Top Up Game Murah & Cepat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+/* Reset dan dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('game-bg.jpg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+/* Game Grid */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.game-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.game-button {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+}
+</style>
+<script> // Fungsi pencarian game
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.createElement('input');
+    searchInput.type = 'text';
+    searchInput.placeholder = 'Cari game...';
+    searchInput.style.margin = '20px auto';
+    searchInput.style.display = 'block';
+    searchInput.style.padding = '10px';
+    searchInput.style.width = '80%';
+    searchInput.style.maxWidth = '500px';
+    searchInput.style.borderRadius = '20px';
+    searchInput.style.border = '1px solid #ddd';
+    
+    const gamesContainer = document.querySelector('.container');
+    gamesContainer.insertBefore(searchInput, gamesContainer.firstChild);
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const gameCards = document.querySelectorAll('.game-card');
+        
+        gameCards.forEach(card => {
+            const title = card.querySelector('.game-title').textContent.toLowerCase();
+            if (title.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+}); 
+<script/>
+<script> // Fungsi untuk menampilkan modal paket
+function showPackages(gameName) {
+    // Dummy data paket (bisa diganti dengan data dari database)
+    const packages = {
+        'freefire': [
+            { name: '5 Diamond', price: 'Rp 1.000' },
+            { name: '50 Diamond', price: 'Rp 10.000' },
+            { name: '100 Diamond', price: 'Rp 20.000' }
+        ],
+        'mobilelegends': [
+            { name: '86 Diamond', price: 'Rp 20.000' },
+            { name: '172 Diamond', price: 'Rp 40.000' },
+            { name: '257 Diamond', price: 'Rp 60.000' }
+        ],
+        // Tambahkan paket untuk game lainnya
+    };
+    
+    // Buat modal
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    modal.style.display = 'flex';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '1000';
+    
+    // Konten modal
+    const modalContent = document.createElement('div');
+    modalContent.style.backgroundColor = 'white';
+    modalContent.style.padding = '20px';
+    modalContent.style.borderRadius = '10px';
+    modalContent.style.width = '80%';
+    modalContent.style.maxWidth = '500px';
+    
+    // Judul modal
+    const title = document.createElement('h2');
+    title.textContent = `Paket Top Up ${gameName}`;
+    modalContent.appendChild(title);
+    
+    // Daftar paket
+    const packageList = document.createElement('div');
+    packages[gameName.toLowerCase().replace(' ', '')].forEach(pkg => {
+        const packageItem = document.createElement('div');
+        packageItem.style.margin = '10px 0';
+        packageItem.style.padding = '10px';
+        packageItem.style.border = '1px solid #ddd';
+        packageItem.style.borderRadius = '5px';
+        
+        const name = document.createElement('h3');
+        name.textContent = pkg.name;
+        name.style.margin = '0 0 5px 0';
+        
+        const price = document.createElement('p');
+        price.textContent = pkg.price;
+        price.style.margin = '0';
+        price.style.fontWeight = 'bold';
+        price.style.color = '#6e48aa';
+        
+        const buyBtn = document.createElement('button');
+        buyBtn.textContent = 'Beli Sekarang';
+        buyBtn.style.marginTop = '10px';
+        buyBtn.style.padding = '5px 10px';
+        buyBtn.style.backgroundColor = '#6e48aa';
+        buyBtn.style.color = 'white';
+        buyBtn.style.border = 'none';
+        buyBtn.style.borderRadius = '3px';
+        buyBtn.style.cursor = 'pointer';
+        buyBtn.addEventListener('click', function() {
+            showOrderForm(gameName, pkg.name, pkg.price);
+            modal.remove();
+        });
+        
+        packageItem.appendChild(name);
+        packageItem.appendChild(price);
+        packageItem.appendChild(buyBtn);
+        packageList.appendChild(packageItem);
+    });
+    modalContent.appendChild(packageList);
+    
+    // Tombol tutup
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = 'Tutup';
+    closeBtn.style.marginTop = '15px';
+    closeBtn.style.padding = '8px 15px';
+    closeBtn.style.backgroundColor = '#333';
+    closeBtn.style.color = 'white';
+    closeBtn.style.border = 'none';
+    closeBtn.style.borderRadius = '3px';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.addEventListener('click', function() {
+        modal.remove();
+    });
+    modalContent.appendChild(closeBtn);
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    // Tutup modal saat klik di luar
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+// Tambahkan event listener ke semua tombol game
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const gameName = this.closest('.game-card').querySelector('.game-title').textContent;
+        showPackages(gameName);
+    });
+});
+ <script/>
+ 
+<body>
+    <header>
+        <div class="logo">
+            <h1>GameTopUp</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#games">Daftar Game</a></li>
+                <li><a href="#how-to">Cara Order</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Top Up Game Murah & Instan</h2>
+                <p>Diamond, Voucher, Item Game dengan proses cepat dan aman</p>
+                <a href="#games" class="cta-button">Pilih Game</a>
+            </div>
+        </section>
+
+        <section id="games">
+            <h2>Pilih Game Anda</h2>
+            <div class="game-grid">
+                <!-- Item Game 1 -->
+                <div class="game-card">
+                    <img src="mobile-legends.jpg" alt="Mobile Legends">
+                    <h3>Mobile Legends</h3>
+                    <p>Top Up Diamond MLBB</p>
+                    <a href="#mobile-legends" class="game-button">Pilih</a>
+                </div>
+                
+                <!-- Item Game 2 -->
+                <div class="game-card">
+                    <img src="free-fire.jpg" alt="Free Fire">
+                    <h3>Free Fire</h3>
+                    <p>Top Up Diamond FF</p>
+                    <a href="#free-fire" class="game-button">Pilih</a>
+                </div>
+                
+                <!-- Tambahkan lebih banyak game -->
+            </div>
+        </section>
+
+        <section id="how-to">
+            <h2>Cara Melakukan Top Up</h2>
+            <ol class="steps">
+                <li>Pilih game dan nominal top up</li>
+                <li>Masukkan ID game Anda</li>
+                <li>Pilih metode pembayaran</li>
+                <li>Lakukan pembayaran</li>
+                <li>Item akan dikirim secara instan</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Kontak Kami</h3>
+                <p>Email: garzstrr@gmail.com</p>
+                <p>WhatsApp: 62895402128077</p>
+            </div>
+            <div class="payment-methods">
+                <h3>Metode Pembayaran</h3>
+                <div class="payment-icons">
+                    <!-- Ikon metode pembayaran -->
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 GameTopUp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
