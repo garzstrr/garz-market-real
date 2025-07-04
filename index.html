@@ -3,580 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameTopUp - Top Up Game Murah & Cepat</title>
-    <link rel="stylesheet" href="style.css">
+    <title>TopUpGames - Murah & Cepat</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+        body{background:#f5f5f5;color:#333;line-height:1.6}
+        header{background:#2c3e50;color:#fff;padding:15px;text-align:center}
+        .game-container{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px;padding:15px}
+        .game-card{background:#fff;border-radius:8px;padding:10px;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+        .game-card img{width:80px;height:80px;object-fit:cover;border-radius:50%}
+        .game-btn{display:inline-block;background:#3498db;color:#fff;padding:5px 10px;border-radius:4px;margin-top:8px;text-decoration:none;font-size:14px}
+        footer{background:#2c3e50;color:#fff;text-align:center;padding:15px;margin-top:20px}
+        @media (max-width:600px){.game-container{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+    </style>
 </head>
-
-<style>
-/* Reset dan dasar */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Header */
-header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-}
-
-/* Hero Section */
-#hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('game-bg.jpg');
-    background-size: cover;
-    color: white;
-    text-align: center;
-    padding: 5rem 1rem;
-}
-
-.cta-button {
-    display: inline-block;
-    background: #e74c3c;
-    color: white;
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 1rem;
-}
-
-/* Game Grid */
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-}
-
-.game-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-}
-
-.game-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.game-button {
-    display: inline-block;
-    background: #3498db;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 1rem 0;
-}
-
-/* Footer */
-footer {
-    background: #2c3e50;
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-around;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-/* Responsif */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-    }
-}
-</style>
-<script> // Fungsi pencarian game
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.createElement('input');
-    searchInput.type = 'text';
-    searchInput.placeholder = 'Cari game...';
-    searchInput.style.margin = '20px auto';
-    searchInput.style.display = 'block';
-    searchInput.style.padding = '10px';
-    searchInput.style.width = '80%';
-    searchInput.style.maxWidth = '500px';
-    searchInput.style.borderRadius = '20px';
-    searchInput.style.border = '1px solid #ddd';
-    
-    const gamesContainer = document.querySelector('.container');
-    gamesContainer.insertBefore(searchInput, gamesContainer.firstChild);
-    
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const gameCards = document.querySelectorAll('.game-card');
-        
-        gameCards.forEach(card => {
-            const title = card.querySelector('.game-title').textContent.toLowerCase();
-            if (title.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-}); 
-<script> 
-<script>  // Fungsi untuk menampilkan modal paket
-function showPackages(gameName) {
-    // Dummy data paket (bisa diganti dengan data dari database)
-    const packages = {
-        'freefire': [
-            { name: '5 Diamond', price: 'Rp 1.000' },
-            { name: '50 Diamond', price: 'Rp 10.000' },
-            { name: '100 Diamond', price: 'Rp 20.000' }
-        ],
-        'mobilelegends': [
-            { name: '86 Diamond', price: 'Rp 20.000' },
-            { name: '172 Diamond', price: 'Rp 40.000' },
-            { name: '257 Diamond', price: 'Rp 60.000' }
-        ],
-        // Tambahkan paket untuk game lainnya
-    };
-    
-    // Buat modal
-    const modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
-    modal.style.display = 'flex';
-    modal.style.justifyContent = 'center';
-    modal.style.alignItems = 'center';
-    modal.style.zIndex = '1000';
-    
-    // Konten modal
-    const modalContent = document.createElement('div');
-    modalContent.style.backgroundColor = 'white';
-    modalContent.style.padding = '20px';
-    modalContent.style.borderRadius = '10px';
-    modalContent.style.width = '80%';
-    modalContent.style.maxWidth = '500px';
-    
-    // Judul modal
-    const title = document.createElement('h2');
-    title.textContent = `Paket Top Up ${gameName}`;
-    modalContent.appendChild(title);
-    
-    // Daftar paket
-    const packageList = document.createElement('div');
-    packages[gameName.toLowerCase().replace(' ', '')].forEach(pkg => {
-        const packageItem = document.createElement('div');
-        packageItem.style.margin = '10px 0';
-        packageItem.style.padding = '10px';
-        packageItem.style.border = '1px solid #ddd';
-        packageItem.style.borderRadius = '5px';
-        
-        const name = document.createElement('h3');
-        name.textContent = pkg.name;
-        name.style.margin = '0 0 5px 0';
-        
-        const price = document.createElement('p');
-        price.textContent = pkg.price;
-        price.style.margin = '0';
-        price.style.fontWeight = 'bold';
-        price.style.color = '#6e48aa';
-        
-        const buyBtn = document.createElement('button');
-        buyBtn.textContent = 'Beli Sekarang';
-        buyBtn.style.marginTop = '10px';
-        buyBtn.style.padding = '5px 10px';
-        buyBtn.style.backgroundColor = '#6e48aa';
-        buyBtn.style.color = 'white';
-        buyBtn.style.border = 'none';
-        buyBtn.style.borderRadius = '3px';
-        buyBtn.style.cursor = 'pointer';
-        buyBtn.addEventListener('click', function() {
-            showOrderForm(gameName, pkg.name, pkg.price);
-            modal.remove();
-        });
-        
-        packageItem.appendChild(name);
-        packageItem.appendChild(price);
-        packageItem.appendChild(buyBtn);
-        packageList.appendChild(packageItem);
-    });
-    modalContent.appendChild(packageList);
-    
-    // Tombol tutup
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Tutup';
-    closeBtn.style.marginTop = '15px';
-    closeBtn.style.padding = '8px 15px';
-    closeBtn.style.backgroundColor = '#333';
-    closeBtn.style.color = 'white';
-    closeBtn.style.border = 'none';
-    closeBtn.style.borderRadius = '3px';
-    closeBtn.style.cursor = 'pointer';
-    closeBtn.addEventListener('click', function() {
-        modal.remove();
-    });
-    modalContent.appendChild(closeBtn);
-    
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-    
-    // Tutup modal saat klik di luar
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    });
-}
-
-// Tambahkan event listener ke semua tombol game
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const gameName = this.closest('.game-card').querySelector('.game-title').textContent;
-        showPackages(gameName);
-    });
-});
-<script>
-// Fungsi untuk menampilkan form pemesanan
-function showOrderForm(gameName, packageName, packagePrice) {
-    const modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
-    modal.style.display = 'flex';
-    modal.style.justifyContent = 'center';
-    modal.style.alignItems = 'center';
-    modal.style.zIndex = '1000';
-    
-    const modalContent = document.createElement('div');
-    modalContent.style.backgroundColor = 'white';
-    modalContent.style.padding = '20px';
-    modalContent.style.borderRadius = '10px';
-    modalContent.style.width = '80%';
-    modalContent.style.maxWidth = '500px';
-    
-    const title = document.createElement('h2');
-    title.textContent = `Form Pemesanan ${gameName}`;
-    modalContent.appendChild(title);
-    
-    const packageInfo = document.createElement('p');
-    packageInfo.textContent = `Paket: ${packageName} (${packagePrice})`;
-    packageInfo.style.margin = '10px 0';
-    modalContent.appendChild(packageInfo);
-    
-    // Form input
-    const form = document.createElement('form');
-    
-    const idLabel = document.createElement('label');
-    idLabel.textContent = 'ID Game/Username:';
-    idLabel.style.display = 'block';
-    idLabel.style.margin = '10px 0 5px 0';
-    
-    const idInput = document.createElement('input');
-    idInput.type = 'text';
-    idInput.required = true;
-    idInput.style.width = '100%';
-    idInput.style.padding = '8px';
-    idInput.style.border = '1px solid #ddd';
-    idInput.style.borderRadius = '4px';
-    
-    const serverLabel = document.createElement('label');
-    serverLabel.textContent = 'Server (jika ada):';
-    serverLabel.style.display = 'block';
-    serverLabel.style.margin = '10px 0 5px 0';
-    
-    const serverInput = document.createElement('input');
-    serverInput.type = 'text';
-    serverInput.style.width = '100%';
-    serverInput.style.padding = '8px';
-    serverInput.style.border = '1px solid #ddd';
-    serverInput.style.borderRadius = '4px';
-    
-    const emailLabel = document.createElement('label');
-    emailLabel.textContent = 'Email (untuk konfirmasi):';
-    emailLabel.style.display = 'block';
-    emailLabel.style.margin = '10px 0 5px 0';
-    
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.required = true;
-    emailInput.style.width = '100%';
-    emailInput.style.padding = '8px';
-    emailInput.style.border = '1px solid #ddd';
-    emailInput.style.borderRadius = '4px';
-    
-    form.appendChild(idLabel);
-    form.appendChild(idInput);
-    form.appendChild(serverLabel);
-    form.appendChild(serverInput);
-    form.appendChild(emailLabel);
-    form.appendChild(emailInput);
-    
-    // Tombol submit
-    const submitBtn = document.createElement('button');
-    submitBtn.type = 'submit';
-    submitBtn.textContent = 'Lanjut ke Pembayaran';
-    submitBtn.style.marginTop = '15px';
-    submitBtn.style.padding = '10px 15px';
-    submitBtn.style.backgroundColor = '#6e48aa';
-    submitBtn.style.color = 'white';
-    submitBtn.style.border = 'none';
-    submitBtn.style.borderRadius = '4px';
-    submitBtn.style.cursor = 'pointer';
-    
-    form.appendChild(submitBtn);
-    modalContent.appendChild(form);
-    
-    // Tombol tutup
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Batal';
-    closeBtn.style.marginTop = '10px';
-    closeBtn.style.padding = '8px 15px';
-    closeBtn.style.backgroundColor = '#333';
-    closeBtn.style.color = 'white';
-    closeBtn.style.border = 'none';
-    closeBtn.style.borderRadius = '4px';
-    closeBtn.style.cursor = 'pointer';
-    closeBtn.addEventListener('click', function() {
-        modal.remove();
-    });
-    modalContent.appendChild(closeBtn);
-    
-    // Handle form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Pesanan berhasil! Anda akan diarahkan ke halaman pembayaran.');
-        // Di sini bisa diarahkan ke halaman pembayaran atau proses lainnya
-        modal.remove();
-    });
-    
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-    
-    // Tutup modal saat klik di luar
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    });
-}
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 70,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Efek hover pada kartu game
-document.querySelectorAll('.game-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-    });
-});
-
-// Notification badge untuk promo
-function showPromoNotification() {
-    const notification = document.createElement('div');
-    notification.textContent = 'PROMO! Diskon 10% untuk pembelian pertama';
-    notification.style.position = 'fixed';
-    notification.style.bottom = '20px';
-    notification.style.right = '20px';
-    notification.style.backgroundColor = '#6e48aa';
-    notification.style.color = 'white';
-    notification.style.padding = '15px';
-    notification.style.borderRadius = '5px';
-    notification.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-    notification.style.zIndex = '1000';
-    notification.style.animation = 'slideIn 0.5s forwards';
-    
-    // Tambahkan animasi CSS
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    document.body.appendChild(notification);
-    
-    // Hilangkan notifikasi setelah 5 detik
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.5s forwards';
-        
-        const slideOutStyle = document.createElement('style');
-        slideOutStyle.textContent = `
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(slideOutStyle);
-        
-        setTimeout(() => {
-            notification.remove();
-            style.remove();
-            slideOutStyle.remove();
-        }, 500);
-    }, 5000);
-}
-
-// Tampilkan notifikasi promo setelah halaman dimuat
-window.addEventListener('load', function() {
-    setTimeout(showPromoNotification, 2000);
-});
-<script>
-async function fetchGamePrices() {
-    try {
-        const response = await fetch('https://api.example.com/game-prices');
-        const data = await response.json();
-        
-        // Proses data dan update tampilan
-        console.log('Data harga:', data);
-        // Di sini Anda bisa mengupdate tampilan dengan data yang diterima
-        
-    } catch (error) {
-        console.error('Gagal mengambil data harga:', error);
-    }
-}
-
-// Panggil fungsi saat halaman dimuat
-document.addEventListener('DOMContentLoaded', fetchGamePrices);
-<script>
-
 <body>
     <header>
-        <div class="logo">
-            <h1>GameTopUp</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#games">Daftar Game</a></li>
-                <li><a href="#how-to">Cara Order</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-        </nav>
+        <h1>TOPUPGAMES</h1>
+        <p>Murah • Cepat • Aman</p>
     </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h2>Top Up Game Murah & Instan</h2>
-                <p>Diamond, Voucher, Item Game dengan proses cepat dan aman</p>
-                <a href="#games" class="cta-button">Pilih Game</a>
-            </div>
-        </section>
-
-        <section id="games">
-            <h2>Pilih Game Anda</h2>
-            <div class="game-grid">
-                <!-- Item Game 1 -->
-                <div class="game-card">
-                    <img src="mobile-legends.jpg" alt="Mobile Legends">
-                    <h3>Mobile Legends</h3>
-                    <p>Top Up Diamond MLBB</p>
-                    <a href="#mobile-legends" class="game-button">Pilih</a>
-                </div>
-                
-                <!-- Item Game 2 -->
-                <div class="game-card">
-                    <img src="free-fire.jpg" alt="Free Fire">
-                    <h3>Free Fire</h3>
-                    <p>Top Up Diamond FF</p>
-                    <a href="#free-fire" class="game-button">Pilih</a>
-                </div>
-                
-                <!-- Tambahkan lebih banyak game -->
-            </div>
-        </section>
-
-        <section id="how-to">
-            <h2>Cara Melakukan Top Up</h2>
-            <ol class="steps">
-                <li>Pilih game dan nominal top up</li>
-                <li>Masukkan ID game Anda</li>
-                <li>Pilih metode pembayaran</li>
-                <li>Lakukan pembayaran</li>
-                <li>Item akan dikirim secara instan</li>
-            </ol>
-        </section>
-    </main>
+    <div class="game-container">
+        <!-- Mobile Legends -->
+        <div class="game-card">
+            <img src="https://i.imgur.com/JR6kF1W.png" alt="Mobile Legends">
+            <h3>Mobile Legends</h3>
+            <a href="#ml" class="game-btn">Top Up</a>
+        </div>
+        
+        <!-- Free Fire -->
+        <div class="game-card">
+            <img src="https://i.imgur.com/Vz0JvqF.png" alt="Free Fire">
+            <h3>Free Fire</h3>
+            <a href="#ff" class="game-btn">Top Up</a>
+        </div>
+        
+        <!-- 38 Game lainnya dengan struktur sama -->
+        <!-- PUBG Mobile -->
+        <div class="game-card">
+            <img src="https://i.imgur.com/pZ3gGQq.png" alt="PUBG Mobile">
+            <h3>PUBG Mobile</h3>
+            <a href="#pubg" class="game-btn">Top Up</a>
+        </div>
+        
+        <!-- Valorant -->
+        <div class="game-card">
+            <img src="https://i.imgur.com/LYd6XWc.png" alt="Valorant">
+            <h3>Valorant</h3>
+            <a href="#valo" class="game-btn">Top Up</a>
+        </div>
+        
+        <!-- Genshin Impact -->
+        <div class="game-card">
+            <img src="https://i.imgur.com/9QZqQ2a.png" alt="Genshin Impact">
+            <h3>Genshin Impact</h3>
+            <a href="#gi" class="game-btn">Top Up</a>
+        </div>
+        
+        <!-- Dan seterusnya sampai 40 game -->
+    </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3>Kontak Kami</h3>
-                <p>Email: garzstrr@gmail.com</p>
-                <p>WhatsApp: 62895402128077</p>
-            </div>
-            <div class="payment-methods">
-                <h3>Metode Pembayaran</h3>
-                <div class="payment-icons">
-                    <!-- Ikon metode pembayaran -->
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2023 GameTopUp. All rights reserved.</p>
-        </div>
+        <p>© 2023 TopUpGames • WhatsApp: 0895402128077</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Fungsi sederhana untuk animasi
+        document.querySelectorAll('.game-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'https://wa.me/6281234567890?text=Saya mau top up ' + gameName;('Top up untuk ' + this.parentElement.querySelector('h3').textContent);
+            });
+        });
+    </script>
 </body>
 </html>
