@@ -124,7 +124,7 @@ footer {
     }
 }
 </style>
-</style> // Fungsi pencarian game
+<script> // Fungsi pencarian game
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.createElement('input');
     searchInput.type = 'text';
@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 }); 
-</style> 
-</style>  // Fungsi untuk menampilkan modal paket
+<script> 
+<script>  // Fungsi untuk menampilkan modal paket
 function showPackages(gameName) {
     // Dummy data paket (bisa diganti dengan data dari database)
     const packages = {
@@ -272,7 +272,7 @@ document.querySelectorAll('.btn').forEach(btn => {
         showPackages(gameName);
     });
 });
-</style> 
+<script>
 // Fungsi untuk menampilkan form pemesanan
 function showOrderForm(gameName, packageName, packagePrice) {
     const modal = document.createElement('div');
@@ -399,7 +399,7 @@ function showOrderForm(gameName, packageName, packagePrice) {
         }
     });
 }
-</style>
+<script>
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -480,7 +480,7 @@ function showPromoNotification() {
 window.addEventListener('load', function() {
     setTimeout(showPromoNotification, 2000);
 });
-</style>
+<script>
 async function fetchGamePrices() {
     try {
         const response = await fetch('https://api.example.com/game-prices');
@@ -497,7 +497,7 @@ async function fetchGamePrices() {
 
 // Panggil fungsi saat halaman dimuat
 document.addEventListener('DOMContentLoaded', fetchGamePrices);
-</style>
+<script>
 
 <body>
     <header>
