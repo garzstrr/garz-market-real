@@ -1148,3 +1148,1588 @@
     </script>
 </body>
 </html>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4e54c8;
+            --secondary: #8f94fb;
+            --accent: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --blue-gradient: linear-gradient(135deg, #1a2a6c, #b21f1f, #2575fc);
+            --diamond-color: #b9f2ff;
+            --sidebar-width: 280px;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .btn-login {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-login:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .btn-register {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+        }
+        
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 84, 200, 0.4);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .user-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px;
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: none;
+        }
+        
+        .user-dropdown.show {
+            display: block;
+        }
+        
+        .user-dropdown .user-info {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-dropdown .user-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .user-dropdown .user-email {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .user-dropdown ul {
+            list-style: none;
+        }
+        
+        .user-dropdown li {
+            margin-bottom: 10px;
+        }
+        
+        .user-dropdown a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+        
+        .user-dropdown a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #8f94fb, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .promo-banner {
+            background: var(--blue-gradient);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            opacity: 0.2;
+        }
+        
+        .promo-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .promo-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .promo-dates {
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+        }
+        
+        /* Games Section */
+        .games {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 40px;
+            color: white;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .game-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .game-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+        }
+        
+        .game-content {
+            padding: 20px;
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .game-desc {
+            opacity: 0.8;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            min-height: 60px;
+        }
+        
+        .game-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        /* Diamond Options Section */
+        .diamond-options {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .diamond-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+        }
+        
+        .diamond-option {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .diamond-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: var(--diamond-color);
+        }
+        
+        .diamond-option.selected {
+            background: rgba(185, 242, 255, 0.2);
+            border: 2px solid var(--diamond-color);
+            box-shadow: 0 0 15px rgba(185, 242, 255, 0.4);
+        }
+        
+        .diamond-icon {
+            color: var(--diamond-color);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .diamond-amount {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .diamond-price {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .game-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        
+        .game-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .game-btn:disabled {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+        }
+        
+        /* Dashboard & History */
+        .dashboard-section {
+            padding: 60px 0;
+            display: none;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .dashboard-sidebar {
+            width: var(--sidebar-width);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+        
+        .dashboard-menu ul {
+            list-style: none;
+        }
+        
+        .dashboard-menu li {
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-menu a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .dashboard-menu a:hover, .dashboard-menu a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+        
+        .dashboard-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .dashboard-subtitle {
+            opacity: 0.8;
+        }
+        
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .transactions-table th, .transactions-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .transactions-table th {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .transactions-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status.completed {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        
+        .status.pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+        
+        .status.failed {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .close-modal:hover {
+            opacity: 1;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: 2px solid var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .modal-btn:hover {
+            background: #ff5252;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        .form-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin-left: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .user-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .dashboard-sidebar {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .promo-title {
+                font-size: 1.6rem;
+            }
+            
+            .promo-subtitle {
+                font-size: 1rem;
+            }
+            
+            .diamond-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .transactions-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo" onclick="scrollToTop()">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameTopUp</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-section="home"><i class="fas fa-home"></i> Beranda</a></li>
+                        <li><a href="#" class="nav-link" data-section="games"><i class="fas fa-shopping-cart"></i> Top Up</a></li>
+                        <li><a href="#" class="nav-link" data-section="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions" id="user-actions">
+                    <!-- Login/Register buttons will be shown here when user is not logged in -->
+                    <a class="btn btn-login" id="login-btn"><i class="fas fa-sign-in-alt"></i> Masuk</a>
+                    <a class="btn btn-register" id="register-btn"><i class="fas fa-user-plus"></i> Daftar</a>
+                    
+                    <!-- User profile will be shown here when logged in -->
+                    <div class="user-profile" id="user-profile" style="display: none;">
+                        <div class="user-avatar" id="user-avatar">U</div>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <div class="user-info">
+                                <div class="user-name" id="dropdown-name">User Name</div>
+                                <div class="user-email" id="dropdown-email">user@example.com</div>
+                            </div>
+                            <ul>
+                                <li><a href="#" class="nav-link" data-section="dashboard"><i class="fas fa-history"></i> Riwayat Transaksi</a></li>
+                                <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Top Up Game Tercepat & Terpercaya</h1>
+                <p>Top up game dengan proses instan, aman, dan harga termurah untuk game favorit Anda!</p>
+                
+                <div class="promo-banner">
+                    <h2 class="promo-title">ANNIVERSARY BUNDLE SPECIAL</h2>
+                    <p class="promo-subtitle">Dapatkan Diamond dan Skin Eksklusif untuk Anniversary Game</p>
+                    <div class="promo-dates">
+                        <i class="fas fa-calendar-alt"></i> 27 Jan - 19 Jul 2025
+                    </div>
+                    <button class="cta-button" onclick="showNotification('Promo Anniversary Bundle dipilih')">
+                        <i class="fas fa-gift"></i> DAPATKAN SEKARANG
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games" id="games-section">
+        <div class="container">
+            <h2 class="section-title">Game Populer</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-badge">TERLARIS</div>
+                    <div class="game-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="game-content">
+                        <h3 class="game-title">Mobile Legends</h3>
+                        <p class="game-desc">Top up diamonds untuk skin dan hero baru</p>
+                        <div class="game-price">Rp 10.000 - Rp 500.000</div>
+                        
+                        <div class="diamond-options">
+                            <h4>Pilihan Diamond:</h4>
+                            <div class="diamond-grid">
+                                <div class="diamond-option" onclick="selectDiamond('ml', 50, 10000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">50 Diamond</div>
+                                    <div class="diamond-price">Rp 10.000</div>
+                                </div>
+                                <div class="diamond-option" onclick="selectDiamond('ml', 100, 20000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">100 Diamond</div>
+                                    <div class="diamond-price">Rp 20.000</div>
+                                </div>
+                                <div class="diamond-option" onclick="selectDiamond('ml', 200, 38000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">200 Diamond</div>
+                                    <div class="diamond-price">Rp 38.000</div>
+                                </div>
+                                <div class="diamond-option" onclick="selectDiamond('ml', 500, 90000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">500 Diamond</div>
+                                    <div class="diamond-price">Rp 90.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="game-btn" id="ml-btn" onclick="topUpGame('ml')" disabled>
+                            <i class="fas fa-shopping-cart"></i> Top Up Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-badge">PROMO</div>
+                    <div class="game-img" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="game-content">
+                        <h3 class="game-title">Free Fire</h3>
+                        <p class="game-desc">Top up diamonds untuk karakter dan senjata eksklusif</p>
+                        <div class="game-price">Rp 15.000 - Rp 750.000</div>
+                        
+                        <div class="diamond-options">
+                            <h4>Pilihan Diamond:</h4>
+                            <div class="diamond-grid">
+                                <div class="diamond-option" onclick="selectDiamond('ff', 50, 15000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">50 Diamond</div>
+                                    <div class="diamond-price">Rp 15.000</div>
+                                </div>
+                                <div class="diamond-option" onclick="selectDiamond('ff', 100, 29000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">100 Diamond</div>
+                                    <div class="diamond-price">Rp 29.000</div>
+                                </div>
+                                <div class="diamond-option" onclick="selectDiamond('ff', 200, 55000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">200 Diamond</div>
+                                    <div class="diamond-price">Rp 55.000</div>
+                                </div>
+                                <div class="diamond-option" onclick="selectDiamond('ff', 500, 120000)">
+                                    <div class="diamond-icon"><i class="fas fa-gem"></i></div>
+                                    <div class="diamond-amount">500 Diamond</div>
+                                    <div class="diamond-price">Rp 120.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="game-btn" id="ff-btn" onclick="topUpGame('ff')" disabled>
+                            <i class="fas fa-shopping-cart"></i> Top Up Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section" id="dashboard-section">
+        <div class="container">
+            <div class="dashboard-container">
+                <div class="dashboard-sidebar">
+                    <div class="user-info" style="margin-bottom: 30px; display: flex; align-items: center; gap: 15px;">
+                        <div class="user-avatar" id="dashboard-avatar">U</div>
+                        <div>
+                            <div class="user-name" id="dashboard-name">User Name</div>
+                            <div class="user-email" id="dashboard-email">user@example.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-menu">
+                        <ul>
+                            <li><a href="#" class="active"><i class="fas fa-history"></i> Riwayat Transaksi</a></li>
+                            <li><a href="#"><i class="fas fa-wallet"></i> Saldo</a></li>
+                            <li><a href="#"><i class="fas fa-user-cog"></i> Pengaturan Akun</a></li>
+                            <li><a href="#"><i class="fas fa-question-circle"></i> Bantuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="dashboard-header">
+                        <h2 class="dashboard-title">Riwayat Transaksi</h2>
+                        <p class="dashboard-subtitle">Semua transaksi top up game Anda tercatat di sini</p>
+                    </div>
+                    
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Game</th>
+                                <th>Item</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-body">
+                            <!-- Transactions will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang Kami</h3>
+                    <p>GameTopUp menyediakan layanan top up game dengan proses cepat dan aman. Dukung game favoritmu dengan cara termudah!</p>
+                    <div class="social-icons">
+                        <a href="#" onclick="showNotification('Membuka Facebook')"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" onclick="showNotification('Membuka Instagram')"><i class="fab fa-instagram"></i></a>
+                        <a href="#" onclick="showNotification('Membuka Twitter')"><i class="fab fa-twitter"></i></a>
+                        <a href="#" onclick="showNotification('Membuka YouTube')"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-section="games"><i class="fas fa-dice-d6"></i> Mobile Legends</a></li>
+                        <li><a href="#" class="nav-link" data-section="games"><i class="fas fa-fire"></i> Free Fire</a></li>
+                        <li><a href="#" class="nav-link" data-section="games"><i class="fas fa-crosshairs"></i> PUBG Mobile</a></li>
+                        <li><a href="#" class="nav-link" data-section="games"><i class="fas fa-wind"></i> Genshin Impact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Bantuan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showNotification('Menampilkan Cara Top Up')"><i class="fas fa-question-circle"></i> Cara Top Up</a></li>
+                        <li><a href="#" onclick="showNotification('Menampilkan FAQ')"><i class="fas fa-comments"></i> FAQ</a></li>
+                        <li><a href="#" onclick="showNotification('Menampilkan Syarat & Ketentuan')"><i class="fas fa-file-alt"></i> Syarat & Ketentuan</a></li>
+                        <li><a href="#" onclick="showNotification('Menampilkan Kebijakan Privasi')"><i class="fas fa-lock"></i> Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 GameTopUp. Hak Cipta Dilindungi. | codashop.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-login">&times;</button>
+            <h2 class="modal-title">Masuk ke Akun Anda</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" class="form-control" placeholder="email@contoh.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Password Anda" required>
+                </div>
+                <button type="submit" class="modal-btn">Masuk</button>
+                <div class="form-footer">
+                    Belum punya akun? <a href="#" id="show-register">Daftar sekarang</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-register">&times;</button>
+            <h2 class="modal-title">Buat Akun Baru</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Nama Lengkap</label>
+                    <input type="text" id="register-name" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" class="form-control" placeholder="email@contoh.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" class="form-control" placeholder="Buat password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Konfirmasi Password</label>
+                    <input type="password" id="register-confirm" class="form-control" placeholder="Konfirmasi password" required>
+                </div>
+                <button type="submit" class="modal-btn">Daftar</button>
+                <div class="form-footer">
+                    Sudah punya akun? <a href="#" id="show-login">Masuk sekarang</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message">Notifikasi</span>
+    </div>
+
+    <script>
+        // Data untuk pilihan diamond
+        const diamondOptions = {
+            'ml': { 
+                selected: null,
+                options: [
+                    { amount: 50, price: 10000 },
+                    { amount: 100, price: 20000 },
+                    { amount: 200, price: 38000 },
+                    { amount: 500, price: 90000 }
+                ]
+            },
+            'ff': { 
+                selected: null,
+                options: [
+                    { amount: 50, price: 15000 },
+                    { amount: 100, price: 29000 },
+                    { amount: 200, price: 55000 },
+                    { amount: 500, price: 120000 }
+                ]
+            }
+        };
+
+        // User data and transactions
+        let currentUser = null;
+        let transactions = [];
+
+        // DOM Elements
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const closeLogin = document.getElementById('close-login');
+        const closeRegister = document.getElementById('close-register');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const userActions = document.getElementById('user-actions');
+        const userProfile = document.getElementById('user-profile');
+        const userAvatar = document.getElementById('user-avatar');
+        const userName = document.getElementById('dropdown-name');
+        const userEmail = document.getElementById('dropdown-email');
+        const userDropdown = document.getElementById('user-dropdown');
+        const logoutBtn = document.getElementById('logout-btn');
+        const dashboardSection = document.getElementById('dashboard-section');
+        const dashboardAvatar = document.getElementById('dashboard-avatar');
+        const dashboardName = document.getElementById('dashboard-name');
+        const dashboardEmail = document.getElementById('dashboard-email');
+        const transactionsBody = document.getElementById('transactions-body');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const homeSection = document.getElementById('home-section');
+        const gamesSection = document.getElementById('games-section');
+
+        // Modal Functions
+        function openModal(modal) {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show/hide sections
+        function showSection(sectionId) {
+            // Hide all sections
+            homeSection.style.display = 'none';
+            gamesSection.style.display = 'none';
+            dashboardSection.style.display = 'none';
+            
+            // Show selected section
+            if (sectionId === 'home') {
+                homeSection.style.display = 'block';
+            } else if (sectionId === 'games') {
+                gamesSection.style.display = 'block';
+            } else if (sectionId === 'dashboard') {
+                // Check if user is logged in
+                if (currentUser) {
+                    dashboardSection.style.display = 'block';
+                    updateDashboard();
+                } else {
+                    openModal(loginModal);
+                    showNotification('Silakan masuk untuk melihat dashboard');
+                }
+            }
+        }
+
+        // Update dashboard with user data
+        function updateDashboard() {
+            if (!currentUser) return;
+            
+            // Update user info
+            const firstLetter = currentUser.name.charAt(0).toUpperCase();
+            userAvatar.textContent = firstLetter;
+            userName.textContent = currentUser.name;
+            userEmail.textContent = currentUser.email;
+            
+            dashboardAvatar.textContent = firstLetter;
+            dashboardName.textContent = currentUser.name;
+            dashboardEmail.textContent = currentUser.email;
+            
+            // Update transactions
+            updateTransactions();
+        }
+
+        // Update transactions table
+        function updateTransactions() {
+            if (!currentUser) return;
+            
+            // Filter transactions for current user
+            const userTransactions = transactions.filter(t => t.userId === currentUser.id);
+            
+            // Clear table body
+            transactionsBody.innerHTML = '';
+            
+            // Add transactions to table
+            userTransactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const date = new Date(transaction.date);
+                const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+                
+                // Format status
+                let statusClass = '';
+                if (transaction.status === 'completed') statusClass = 'completed';
+                else if (transaction.status === 'pending') statusClass = 'pending';
+                else if (transaction.status === 'failed') statusClass = 'failed';
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${transaction.game}</td>
+                    <td>${transaction.amount} ${transaction.unit}</td>
+                    <td>${transaction.price.toLocaleString('id-ID')}</td>
+                    <td>Rp ${transaction.price.toLocaleString('id-ID')}</td>
+                    <td><span class="status ${statusClass}">${transaction.status === 'completed' ? 'Selesai' : transaction.status === 'pending' ? 'Menunggu' : 'Gagal'}</span></td>
+                `;
+                
+                transactionsBody.appendChild(row);
+            });
+            
+            // If no transactions
+            if (userTransactions.length === 0) {
+                transactionsBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 30px;">
+                            Belum ada transaksi. Mulai top up game favorit Anda!
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Add transaction
+        function addTransaction(game, amount, price, unit) {
+            if (!currentUser) return;
+            
+            const transaction = {
+                id: Date.now(),
+                userId: currentUser.id,
+                game: game,
+                amount: amount,
+                price: price,
+                unit: unit,
+                date: new Date().toISOString(),
+                status: 'completed' // Simulate successful transaction
+            };
+            
+            transactions.push(transaction);
+            updateTransactions();
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const messageElement = document.getElementById('notification-message');
+            
+            messageElement.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Login function
+        function loginUser(email, password) {
+            // In a real app, this would be an API call
+            // For demo, we'll use localStorage
+            
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Find user
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                
+                // Update UI
+                userActions.style.display = 'flex';
+                userProfile.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                registerBtn.style.display = 'none';
+                
+                updateDashboard();
+                
+                closeModal(loginModal);
+                showNotification(`Selamat datang, ${user.name}!`);
+                return true;
+            } else {
+                showNotification('Email atau password salah');
+                return false;
+            }
+        }
+
+        // Register function
+        function registerUser(name, email, password) {
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check if email already exists
+            if (users.some(u => u.email === email)) {
+                showNotification('Email sudah terdaftar');
+                return false;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: password
+            };
+            
+            // Save user
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Log in the new user
+            loginUser(email, password);
+            showNotification('Akun berhasil dibuat!');
+            return true;
+        }
+
+        // Logout function
+        function logoutUser() {
+            currentUser = null;
+            
+            // Update UI
+            userProfile.style.display = 'none';
+            loginBtn.style.display = 'block';
+            registerBtn.style.display = 'block';
+            userDropdown.classList.remove('show');
+            
+            showNotification('Anda telah keluar');
+            showSection('home');
+        }
+
+        // Diamond selection
+        function selectDiamond(game, amount, price) {
+            // Reset all selections for this game
+            const options = document.querySelectorAll(`.game-card[data-game="${game}"] .diamond-option`);
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Mark selected diamond
+            const selectedOption = event.currentTarget;
+            selectedOption.classList.add('selected');
+            
+            // Update data
+            diamondOptions[game].selected = { amount, price };
+            
+            // Enable top up button
+            document.getElementById(`${game}-btn`).disabled = false;
+            
+            // Show notification
+            const gameNames = {
+                'ml': 'Mobile Legends',
+                'ff': 'Free Fire'
+            };
+            
+            let unit = 'Diamond';
+            
+            showNotification(`Dipilih: ${amount} ${unit} untuk ${gameNames[game]} - Rp ${price.toLocaleString('id-ID')}`);
+        }
+
+        // Top up game function
+        function topUpGame(game) {
+            if (!diamondOptions[game].selected) return;
+            
+            const { amount, price } = diamondOptions[game].selected;
+            const gameNames = {
+                'ml': 'Mobile Legends',
+                'ff': 'Free Fire'
+            };
+            
+            let unit = 'Diamond';
+            
+            // Check if user is logged in
+            if (!currentUser) {
+                openModal(loginModal);
+                showNotification('Silakan masuk untuk melakukan top up');
+                return;
+            }
+            
+            // Add transaction
+            addTransaction(gameNames[game], amount, price, unit);
+            
+            showNotification(`Top Up berhasil: ${amount} ${unit} untuk ${gameNames[game]} - Rp ${price.toLocaleString('id-ID')}`);
+        }
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => openModal(loginModal));
+        registerBtn.addEventListener('click', () => openModal(registerModal));
+        closeLogin.addEventListener('click', () => closeModal(loginModal));
+        closeRegister.addEventListener('click', () => closeModal(registerModal));
+        showRegister.addEventListener('click', () => {
+            closeModal(loginModal);
+            openModal(registerModal);
+        });
+        showLogin.addEventListener('click', () => {
+            closeModal(registerModal);
+            openModal(loginModal);
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            loginUser(email, password);
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            
+            if (password !== confirm) {
+                showNotification('Konfirmasi password tidak cocok');
+                return;
+            }
+            
+            registerUser(name, email, password);
+        });
+
+        userProfile.addEventListener('click', () => {
+            userDropdown.classList.toggle('show');
+        });
+
+        logoutBtn.addEventListener('click', logoutUser);
+
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                showSection(section);
+                
+                // Close dropdown if open
+                userDropdown.classList.remove('show');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userProfile.contains(e.target)) {
+                userDropdown.classList.remove('show');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                if (card.querySelector('#ml-btn')) card.setAttribute('data-game', 'ml');
+                if (card.querySelector('#ff-btn')) card.setAttribute('data-game', 'ff');
+            });
+            
+            // Check if user is logged in from localStorage
+            const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (loggedInUser) {
+                currentUser = loggedInUser;
+                userProfile.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                registerBtn.style.display = 'none';
+                updateDashboard();
+            }
+            
+            // Load transactions
+            const savedTransactions = JSON.parse(localStorage.getItem('transactions'));
+            if (savedTransactions) {
+                transactions = savedTransactions;
+            }
+        });
+
+        // Save transactions to localStorage
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            if (currentUser) {
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+        });
+    </script>
+</body>
+</html>
