@@ -3,869 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GarzMarket - Top Up Game Online</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Garzreal - Top Up Pulsa & Data</title>
     <style>
-        :root {
-            --primary-blue: #1a4b8c;
-            --secondary-blue: #2a75bb;
-            --light-blue: #4da8da;
-            --dark-blue: #0d2c54;
-            --accent: #ff6b6b;
-            --light: #f8f9fa;
-            --dark: #212529;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            color: var(--light);
-            min-height: 100vh;
-            padding-bottom: 50px;
+            background-color: #f5f5f5;
+            color: #333;
         }
         
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Header Styles */
         header {
-            background: rgba(13, 44, 84, 0.9);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo i {
-            font-size: 2.5rem;
-            color: var(--light-blue);
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(to right, var(--light-blue), #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            margin-bottom: 0.5rem;
         }
         
-        .nav-links {
-            display: flex;
-            gap: 25px;
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            padding: 8px 15px;
-            border-radius: 5px;
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
         
-        .nav-links a:hover, .nav-links a.active {
-            background: var(--secondary-blue);
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
         
-        .user-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: #9d50bb;
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .service-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
         }
         
         .btn {
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
             display: inline-block;
-        }
-        
-        .btn-login {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--light-blue);
-        }
-        
-        .btn-login:hover {
-            background: var(--light-blue);
-            color: var(--dark-blue);
-        }
-        
-        .btn-register {
-            background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
             color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
         }
         
-        .btn-register:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 80px 0 50px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(42, 117, 187, 0.3), transparent 70%);
-            z-index: -1;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--light-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: #e0e0e0;
-        }
-        
-        .search-box {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            position: relative;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--light-blue);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1.1rem;
-            backdrop-filter: blur(10px);
-        }
-        
-        .search-box input::placeholder {
-            color: #b0c4de;
-        }
-        
-        .search-box i {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--light-blue);
-            font-size: 1.2rem;
-        }
-        
-        /* Games Section */
-        .section-title {
-            text-align: center;
-            margin: 40px 0 30px;
-            font-size: 2.2rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: var(--light-blue);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .game-card {
-            background: rgba(13, 44, 84, 0.7);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(77, 168, 218, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-        }
-        
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--light-blue);
-        }
-        
-        .game-header {
-            padding: 20px;
-            background: rgba(26, 75, 140, 0.5);
-            border-bottom: 1px solid rgba(77, 168, 218, 0.3);
-        }
-        
-        .game-title {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .game-title i {
-            color: var(--light-blue);
-        }
-        
-        .game-content {
-            padding: 20px;
+        .btn:hover {
+            opacity: 0.9;
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 1.5rem;
         }
         
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
             font-weight: 500;
-            color: #b0c4de;
         }
         
-        .form-control {
+        input, select {
             width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(77, 168, 218, 0.5);
-            background: rgba(13, 44, 84, 0.5);
-            color: white;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             font-size: 1rem;
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--light-blue);
-        }
-        
-        .diamond-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .diamond-option {
-            background: rgba(13, 44, 84, 0.8);
-            border: 1px solid rgba(77, 168, 218, 0.3);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .diamond-option:hover, .diamond-option.selected {
-            background: var(--primary-blue);
-            border-color: var(--light-blue);
-        }
-        
-        .diamond-amount {
-            font-weight: 700;
-            color: var(--light-blue);
-            font-size: 1.2rem;
-        }
-        
-        .diamond-price {
-            font-size: 0.9rem;
-            color: #ddd;
-        }
-        
-        .btn-buy {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        
-        .btn-buy:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Footer */
         footer {
-            background: rgba(13, 44, 84, 0.9);
-            padding: 40px 0 20px;
-            margin-top: 60px;
-            border-top: 1px solid rgba(77, 168, 218, 0.3);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            color: var(--light-blue);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #b0c4de;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--light-blue);
-            padding-left: 5px;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
         }
         
         .contact-info {
-            color: #b0c4de;
-        }
-        
-        .contact-info div {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-blue);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: var(--light-blue);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(77, 168, 218, 0.2);
-            color: #8aa0c1;
-            font-size: 0.9rem;
-        }
-        
-        /* Login Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-content {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            width: 90%;
-            max-width: 450px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(77, 168, 218, 0.5);
-        }
-        
-        .modal-header {
-            background: rgba(13, 44, 84, 0.8);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(77, 168, 218, 0.3);
-        }
-        
-        .modal-header h2 {
-            font-size: 1.8rem;
-            color: var(--light-blue);
-        }
-        
-        .modal-body {
-            padding: 30px;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            color: #b0c4de;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            color: var(--light-blue);
-            transform: rotate(90deg);
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
+            margin-top: 1rem;
         }
         
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .user-actions {
-                gap: 10px;
-            }
-            
-            .btn {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .hero {
-                padding: 60px 0 30px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .diamond-options {
+            .services {
                 grid-template-columns: 1fr;
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-gamepad"></i>
-                <div class="logo-text">GarzMarket</div>
-            </div>
-            <nav class="nav-links">
-                <a href="#" class="active">Beranda</a>
-                <a href="#">Game</a>
-                <a href="#">Promo</a>
-                <a href="#">Cara Order</a>
-                <a href="#">Kontak</a>
-            </nav>
-            <div class="user-actions">
-                <a href="#" class="btn btn-login" id="loginBtn">Masuk</a>
-                <a href="#" class="btn btn-register" id="registerBtn">Daftar</a>
-            </div>
-        </div>
+        <div class="logo">Garzreal</div>
+        <div class="tagline">Top Up Pulsa & Paket Data Murah dan Cepat</div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>TOP UP GAME ONLINE TERMURAH & TERCEPAT</h1>
-            <p>Isi diamond, UC, shell, dan mata uang game lainnya dengan harga termurah dan proses instan di GarzMarket</p>
-            
-            <div class="search-box">
-                <input type="text" placeholder="Cari game favoritmu...">
-                <i class="fas fa-search"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- Games Section -->
-    <section class="container">
-        <h2 class="section-title">PILIH GAME FAVORIT ANDA</h2>
+    
+    <div class="container">
+        <h2>Layanan Kami</h2>
+        <p>Pilih layanan yang Anda butuhkan:</p>
         
-        <div class="games-grid">
-            <!-- Game Card 1: Mobile Legends -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3 class="game-title"><i class="fas fa-mobile-alt"></i> Mobile Legends: Bang Bang</h3>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
                 </div>
-                <div class="game-content">
-                    <div class="form-group">
-                        <label for="ml-id">ID Game (Mobile Legends)</label>
-                        <input type="text" class="form-control" id="ml-id" placeholder="Masukkan ID game">
-                    </div>
-                    <div class="form-group">
-                        <label for="ml-email">Email</label>
-                        <input type="email" class="form-control" id="ml-email" placeholder="Masukkan email">
-                    </div>
-                    <div class="form-group">
-                        <label for="ml-wa">Nomor WhatsApp</label>
-                        <input type="text" class="form-control" id="ml-wa" placeholder="Masukkan nomor WA">
-                    </div>
-                    
-                    <h4>Pilih Diamond:</h4>
-                    <div class="diamond-options">
-                        <div class="diamond-option">
-                            <div class="diamond-amount">5 Diamonds</div>
-                            <div class="diamond-price">Rp 1.500</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">12 Diamonds</div>
-                            <div class="diamond-price">Rp 3.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">50 Diamonds</div>
-                            <div class="diamond-price">Rp 10.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">170 Diamonds</div>
-                            <div class="diamond-price">Rp 40.000</div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
+                <h3 class="service-title">Top Up Pulsa</h3>
+                <p class="service-desc">Isi ulang pulsa semua operator dengan harga terjangkau dan proses instan.</p>
+                <a href="#pulsa" class="btn">Pesan Sekarang</a>
             </div>
             
-            <!-- Game Card 2: Free Fire -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3 class="game-title"><i class="fas fa-fire"></i> Free Fire</h3>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-database"></i>
                 </div>
-                <div class="game-content">
-                    <div class="form-group">
-                        <label for="ff-id">ID Game (Free Fire)</label>
-                        <input type="text" class="form-control" id="ff-id" placeholder="Masukkan ID game">
-                    </div>
-                    <div class="form-group">
-                        <label for="ff-email">Email</label>
-                        <input type="email" class="form-control" id="ff-email" placeholder="Masukkan email">
-                    </div>
-                    <div class="form-group">
-                        <label for="ff-wa">Nomor WhatsApp</label>
-                        <input type="text" class="form-control" id="ff-wa" placeholder="Masukkan nomor WA">
-                    </div>
-                    
-                    <h4>Pilih Diamond:</h4>
-                    <div class="diamond-options">
-                        <div class="diamond-option">
-                            <div class="diamond-amount">5 Diamonds</div>
-                            <div class="diamond-price">Rp 1.500</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">15 Diamonds</div>
-                            <div class="diamond-price">Rp 3.500</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">50 Diamonds</div>
-                            <div class="diamond-price">Rp 10.500</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">100 Diamonds</div>
-                            <div class="diamond-price">Rp 20.000</div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
+                <h3 class="service-title">Paket Data</h3>
+                <p class="service-desc">Berbagai pilihan paket data internet untuk semua provider dengan harga spesial.</p>
+                <a href="#data" class="btn">Pesan Sekarang</a>
             </div>
             
-            <!-- Game Card 3: Genshin Impact -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3 class="game-title"><i class="fas fa-wind"></i> Genshin Impact</h3>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-gamepad"></i>
                 </div>
-                <div class="game-content">
-                    <div class="form-group">
-                        <label for="gi-id">ID Game (Genshin Impact)</label>
-                        <input type="text" class="form-control" id="gi-id" placeholder="Masukkan ID game">
-                    </div>
-                    <div class="form-group">
-                        <label for="gi-email">Email</label>
-                        <input type="email" class="form-control" id="gi-email" placeholder="Masukkan email">
-                    </div>
-                    <div class="form-group">
-                        <label for="gi-wa">Nomor WhatsApp</label>
-                        <input type="text" class="form-control" id="gi-wa" placeholder="Masukkan nomor WA">
-                    </div>
-                    
-                    <h4>Pilih Genesis Crystal:</h4>
-                    <div class="diamond-options">
-                        <div class="diamond-option">
-                            <div class="diamond-amount">60 Crystals</div>
-                            <div class="diamond-price">Rp 15.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">300 Crystals</div>
-                            <div class="diamond-price">Rp 75.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">980 Crystals</div>
-                            <div class="diamond-price">Rp 245.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">1980 Crystals</div>
-                            <div class="diamond-price">Rp 490.000</div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
-            </div>
-            
-            <!-- Game Card 4: PUBG Mobile -->
-            <div class="game-card">
-                <div class="game-header">
-                    <h3 class="game-title"><i class="fas fa-crosshairs"></i> PUBG Mobile</h3>
-                </div>
-                <div class="game-content">
-                    <div class="form-group">
-                        <label for="pubg-id">ID Game (PUBG Mobile)</label>
-                        <input type="text" class="form-control" id="pubg-id" placeholder="Masukkan ID game">
-                    </div>
-                    <div class="form-group">
-                        <label for="pubg-email">Email</label>
-                        <input type="email" class="form-control" id="pubg-email" placeholder="Masukkan email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pubg-wa">Nomor WhatsApp</label>
-                        <input type="text" class="form-control" id="pubg-wa" placeholder="Masukkan nomor WA">
-                    </div>
-                    
-                    <h4>Pilih UC:</h4>
-                    <div class="diamond-options">
-                        <div class="diamond-option">
-                            <div class="diamond-amount">60 UC</div>
-                            <div class="diamond-price">Rp 12.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">325 UC</div>
-                            <div class="diamond-price">Rp 60.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">660 UC</div>
-                            <div class="diamond-price">Rp 120.000</div>
-                        </div>
-                        <div class="diamond-option">
-                            <div class="diamond-amount">1800 UC</div>
-                            <div class="diamond-price">Rp 300.000</div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-buy">Beli Sekarang</button>
-                </div>
+                <h3 class="service-title">Voucher Game</h3>
+                <p class="service-desc">Top up voucher game untuk berbagai platform seperti Mobile Legends, Free Fire, PUBG, dan lainnya.</p>
+                <a href="#game" class="btn">Pesan Sekarang</a>
             </div>
         </div>
-    </section>
-
-    <!-- More Games Button -->
-    <div class="container" style="text-align: center; margin: 40px 0;">
-        <button class="btn btn-register" style="padding: 15px 40px; font-size: 1.2rem;">Lihat Lebih Banyak Game</button>
+        
+        <section id="pulsa" style="margin-top: 4rem;">
+            <h2>Top Up Pulsa</h2>
+            <form>
+                <div class="form-group">
+                    <label for="operator-pulsa">Pilih Operator</label>
+                    <select id="operator-pulsa">
+                        <option value="">-- Pilih Operator --</option>
+                        <option value="telkomsel">Telkomsel</option>
+                        <option value="xl">XL</option>
+                        <option value="indosat">Indosat Ooredoo</option>
+                        <option value="tri">3 (Tri)</option>
+                        <option value="smartfren">Smartfren</option>
+                        <option value="axis">Axis</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nomor-pulsa">Nomor Handphone</label>
+                    <input type="text" id="nomor-pulsa" placeholder="Contoh: 081234567890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="nominal-pulsa">Pilih Nominal</label>
+                    <select id="nominal-pulsa">
+                        <option value="">-- Pilih Nominal --</option>
+                        <option value="5000">Rp 5.000</option>
+                        <option value="10000">Rp 10.000</option>
+                        <option value="20000">Rp 20.000</option>
+                        <option value="50000">Rp 50.000</option>
+                        <option value="100000">Rp 100.000</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Lanjutkan Pembayaran</button>
+            </form>
+        </section>
+        
+        <section id="data" style="margin-top: 4rem;">
+            <h2>Paket Data Internet</h2>
+            <form>
+                <div class="form-group">
+                    <label for="operator-data">Pilih Operator</label>
+                    <select id="operator-data">
+                        <option value="">-- Pilih Operator --</option>
+                        <option value="telkomsel">Telkomsel</option>
+                        <option value="xl">XL</option>
+                        <option value="indosat">Indosat Ooredoo</option>
+                        <option value="tri">3 (Tri)</option>
+                        <option value="smartfren">Smartfren</option>
+                        <option value="axis">Axis</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nomor-data">Nomor Handphone</label>
+                    <input type="text" id="nomor-data" placeholder="Contoh: 081234567890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="paket-data">Pilih Paket Data</label>
+                    <select id="paket-data">
+                        <option value="">-- Pilih Paket --</option>
+                        <option value="1gb">1GB - 7 Hari - Rp 10.000</option>
+                        <option value="3gb">3GB - 30 Hari - Rp 25.000</option>
+                        <option value="5gb">5GB - 30 Hari - Rp 35.000</option>
+                        <option value="10gb">10GB - 30 Hari - Rp 60.000</option>
+                        <option value="unlimited">Unlimited 30 Hari - Rp 100.000</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Lanjutkan Pembayaran</button>
+            </form>
+        </section>
     </div>
-
-    <!-- Footer -->
+    
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Tentang GarzMarket</h3>
-                    <p>GarzMarket adalah platform top up game online terpercaya dengan harga termurah dan proses instan. Kami menyediakan top up untuk berbagai game populer.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Game Populer</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Mobile Legends</a></li>
-                        <li><a href="#">Free Fire</a></li>
-                        <li><a href="#">Genshin Impact</a></li>
-                        <li><a href="#">PUBG Mobile</a></li>
-                        <li><a href="#">Valorant</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Kontak Kami</h3>
-                    <div class="contact-info">
-                        <div>
-                            <i class="fas fa-envelope"></i>
-                            <span>support@garzmarket.com</span>
-                        </div>
-                        <div>
-                            <i class="fab fa-whatsapp"></i>
-                            <span>62895402128077</span>
-                        </div>
-                        <div>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Jakarta, Indonesia</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                &copy; 2023 GarzMarket. Hak Cipta Dilindungi.
-            </div>
+        <div class="logo">Garzreal</div>
+        <p>Solusi top up pulsa dan paket data terbaik untuk kebutuhan komunikasi Anda.</p>
+        
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> Email: admin@garzreal.com</p>
+            <p><i class="fas fa-phone"></i> WhatsApp: 0812-3456-7890</p>
+            <p><i class="fas fa-map-marker-alt"></i> Alamat: Jl. Contoh No. 123, Kota Anda</p>
         </div>
+        
+        <p style="margin-top: 2rem;">&copy; 2023 Garzreal. All Rights Reserved.</p>
     </footer>
-
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Masuk ke Akun Anda</h2>
-                <span class="close-modal" id="closeLogin">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" class="form-control" id="login-email" placeholder="Masukkan email">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" class="form-control" id="login-password" placeholder="Masukkan password">
-                    </div>
-                    <button class="btn-buy" style="margin-top: 20px;">Masuk</button>
-                </form>
-                <p style="text-align: center; margin-top: 20px; color: #b0c4de;">
-                    Belum punya akun? <a href="#" style="color: var(--light-blue);" id="registerLink">Daftar sekarang</a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Modal functionality
-        const loginBtn = document.getElementById('loginBtn');
-        const closeLogin = document.getElementById('closeLogin');
-        const loginModal = document.getElementById('loginModal');
-        const registerLink = document.getElementById('registerLink');
-        
-        loginBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginModal.style.display = 'flex';
-        });
-        
-        closeLogin.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', function(e) {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-        
-        registerLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginModal.style.display = 'none';
-            // Here you would normally show the register modal
-            alert('Halaman pendaftaran akan ditampilkan');
-        });
-        
-        // Diamond selection functionality
-        const diamondOptions = document.querySelectorAll('.diamond-option');
-        diamondOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove selected class from all options in the same container
-                this.parentElement.querySelectorAll('.diamond-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                
-                // Add selected class to clicked option
-                this.classList.add('selected');
-            });
-        });
-    </script>
 </body>
 </html>
