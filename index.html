@@ -1,264 +1,127 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garzreal - Top Up Pulsa & Data</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tagline {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: #9d50bb;
-            margin-bottom: 1rem;
-        }
-        
-        .service-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .service-desc {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        
-        .btn:hover {
-            opacity: 0.9;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .contact-info {
-            margin-top: 1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .services {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="logo">Garzreal</div>
-        <div class="tagline">Top Up Pulsa & Paket Data Murah dan Cepat</div>
-    </header>
-    
-    <div class="container">
-        <h2>Layanan Kami</h2>
-        <p>Pilih layanan yang Anda butuhkan:</p>
-        
-        <div class="services">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3 class="service-title">Top Up Pulsa</h3>
-                <p class="service-desc">Isi ulang pulsa semua operator dengan harga terjangkau dan proses instan.</p>
-                <a href="#pulsa" class="btn">Pesan Sekarang</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3 class="service-title">Paket Data</h3>
-                <p class="service-desc">Berbagai pilihan paket data internet untuk semua provider dengan harga spesial.</p>
-                <a href="#data" class="btn">Pesan Sekarang</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h3 class="service-title">Voucher Game</h3>
-                <p class="service-desc">Top up voucher game untuk berbagai platform seperti Mobile Legends, Free Fire, PUBG, dan lainnya.</p>
-                <a href="#game" class="btn">Pesan Sekarang</a>
-            </div>
-        </div>
-        
-        <section id="pulsa" style="margin-top: 4rem;">
-            <h2>Top Up Pulsa</h2>
-            <form>
-                <div class="form-group">
-                    <label for="operator-pulsa">Pilih Operator</label>
-                    <select id="operator-pulsa">
-                        <option value="">-- Pilih Operator --</option>
-                        <option value="telkomsel">Telkomsel</option>
-                        <option value="xl">XL</option>
-                        <option value="indosat">Indosat Ooredoo</option>
-                        <option value="tri">3 (Tri)</option>
-                        <option value="smartfren">Smartfren</option>
-                        <option value="axis">Axis</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nomor-pulsa">Nomor Handphone</label>
-                    <input type="text" id="nomor-pulsa" placeholder="Contoh: 081234567890">
-                </div>
-                
-                <div class="form-group">
-                    <label for="nominal-pulsa">Pilih Nominal</label>
-                    <select id="nominal-pulsa">
-                        <option value="">-- Pilih Nominal --</option>
-                        <option value="5000">Rp 5.000</option>
-                        <option value="10000">Rp 10.000</option>
-                        <option value="20000">Rp 20.000</option>
-                        <option value="50000">Rp 50.000</option>
-                        <option value="100000">Rp 100.000</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn">Lanjutkan Pembayaran</button>
-            </form>
-        </section>
-        
-        <section id="data" style="margin-top: 4rem;">
-            <h2>Paket Data Internet</h2>
-            <form>
-                <div class="form-group">
-                    <label for="operator-data">Pilih Operator</label>
-                    <select id="operator-data">
-                        <option value="">-- Pilih Operator --</option>
-                        <option value="telkomsel">Telkomsel</option>
-                        <option value="xl">XL</option>
-                        <option value="indosat">Indosat Ooredoo</option>
-                        <option value="tri">3 (Tri)</option>
-                        <option value="smartfren">Smartfren</option>
-                        <option value="axis">Axis</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nomor-data">Nomor Handphone</label>
-                    <input type="text" id="nomor-data" placeholder="Contoh: 081234567890">
-                </div>
-                
-                <div class="form-group">
-                    <label for="paket-data">Pilih Paket Data</label>
-                    <select id="paket-data">
-                        <option value="">-- Pilih Paket --</option>
-                        <option value="1gb">1GB - 7 Hari - Rp 10.000</option>
-                        <option value="3gb">3GB - 30 Hari - Rp 25.000</option>
-                        <option value="5gb">5GB - 30 Hari - Rp 35.000</option>
-                        <option value="10gb">10GB - 30 Hari - Rp 60.000</option>
-                        <option value="unlimited">Unlimited 30 Hari - Rp 100.000</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn">Lanjutkan Pembayaran</button>
-            </form>
-        </section>
-    </div>
-    
-    <footer>
-        <div class="logo">Garzreal</div>
-        <p>Solusi top up pulsa dan paket data terbaik untuk kebutuhan komunikasi Anda.</p>
-        
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> Email: admin@garzreal.com</p>
-            <p><i class="fas fa-phone"></i> WhatsApp: 0812-3456-7890</p>
-            <p><i class="fas fa-map-marker-alt"></i> Alamat: Jl. Contoh No. 123, Kota Anda</p>
-        </div>
-        
-        <p style="margin-top: 2rem;">&copy; 2023 Garzreal. All Rights Reserved.</p>
-    </footer>
-</body>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Bug WhatsApp Gratis
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Orbitron', monospace;
+    }
+    .neon-text {
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+    }
+    .neon-button {
+      box-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+    }
+    .neon-box {
+      box-shadow:
+        0 0 10px #0ff;
+    }
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 10s linear infinite;
+      color: #ccc;
+      font-size: 1.25rem; /* text-lg */
+      font-weight: 400;
+      font-family: 'Orbitron', monospace;
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+ </head>
+ <body class="min-h-screen bg-black bg-opacity-90 relative overflow-hidden">
+  <img alt="Blurred anime character with dark background" class="absolute inset-0 w-full h-full object-cover opacity-30 -z-10" height="600" src="https://storage.googleapis.com/a1aa/image/0713836b-7704-48a3-fb25-754bbc707fbc.jpg" width="400"/>
+  <div id="screen1" class="flex flex-col items-center justify-start min-h-screen px-6 pt-6 max-w-md mx-auto">
+   <header class="px-4 py-2 rounded-lg neon-box bg-black bg-opacity-80 w-full mb-20">
+    <h1 class="text-cyan-400 text-lg sm:text-xl font-semibold neon-text text-center select-none">
+     Garz Developer
+    </h1>
+   </header>
+   <h2 class="text-cyan-400 neon-text text-5xl sm:text-6xl font-extrabold text-center leading-tight select-none">
+    BUG
+    <br/>
+    WHATSAPP
+    <br/>
+    GRATIS
+   </h2>
+   <div class="marquee-container mt-6 w-full rounded-lg bg-black bg-opacity-70 neon-box">
+    <p class="marquee-text select-none">
+     Website Bug WhatsApp Gratis Website Bug WhatsApp Gratis Website Bug WhatsApp Gratis
+    </p>
+   </div>
+   <input class="mt-6 w-full bg-black bg-opacity-70 rounded-lg py-3 px-4 text-gray-400 placeholder-gray-500 text-xl font-light focus:outline-none focus:ring-2 focus:ring-cyan-400 neon-box" id="phoneInput" placeholder="Masukkan Nomor" type="text"/>
+   <button class="mt-6 w-full bg-cyan-400 neon-button rounded-lg py-3 text-black font-semibold text-lg sm:text-xl tracking-wide hover:bg-cyan-500 transition-colors" id="sendBugBtn">
+    SEND BUG
+   </button>
+  </div>
+  <div id="screen2" class="hidden flex flex-col items-center justify-center min-h-screen px-6 max-w-md mx-auto text-center">
+   <header class="px-4 py-2 rounded-lg neon-box bg-black bg-opacity-80 w-full mb-20">
+    <h1 class="text-cyan-400 text-lg sm:text-xl font-semibold neon-text select-none">
+     Garz Developer
+    </h1>
+   </header>
+   <p class="text-cyan-400 neon-text text-2xl sm:text-3xl font-semibold select-none px-4">
+    Beli apk bug dong ke GarzZOfficial enak aja gratis goblok modal
+   </p>
+   <p class="text-cyan-400 neon-text text-xl sm:text-2xl font-semibold select-none mt-6 px-4">
+    Minat? Chat 0895402128077
+   </p>
+   <button id="backBtn" class="mt-10 w-full bg-cyan-400 neon-button rounded-lg py-3 text-black font-semibold text-lg sm:text-xl tracking-wide hover:bg-cyan-500 transition-colors max-w-md">
+    Kembali
+   </button>
+  </div>
+  <audio id="clickSound" src="https://ttsave.app/id/mp3/notification.mp3" preload="auto"></audio>
+  <script>
+   const sendBugBtn = document.getElementById('sendBugBtn');
+   const clickSound = document.getElementById('clickSound');
+   const phoneInput = document.getElementById('phoneInput');
+   const screen1 = document.getElementById('screen1');
+   const screen2 = document.getElementById('screen2');
+   const backBtn = document.getElementById('backBtn');
+
+   sendBugBtn.addEventListener('click', () => {
+     if(phoneInput.value.trim() === '') {
+       alert('Masukkan nomor terlebih dahulu!');
+       return;
+     }
+     clickSound.currentTime = 0;
+     clickSound.play();
+     screen1.classList.add('hidden');
+     screen2.classList.remove('hidden');
+   });
+
+   backBtn.addEventListener('click', () => {
+     screen2.classList.add('hidden');
+     screen1.classList.remove('hidden');
+     phoneInput.value = '';
+     phoneInput.focus();
+   });
+  </script>
+ </body>
 </html>
